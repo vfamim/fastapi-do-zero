@@ -16,8 +16,8 @@ def session():
         connect_args={'check_same_thread': False},
         poolclass=StaticPool,
     )
+    Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     Base.metadata.create_all(engine)
-    Session = sessionmaker(bind=engine)
     yield Session()
     Base.metadata.drop_all(engine)
 
@@ -53,7 +53,7 @@ def user(session):
 @pytest.fixture
 def token(client, user):
     response = client.post(
-        '/token',
+        '/auth/token',
         data={'username': user.email, 'password': user.clean_password},
     )
     return response.json()['access_token']
