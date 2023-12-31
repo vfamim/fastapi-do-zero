@@ -12,6 +12,7 @@ from fast_zero.security import get_current_user
 router = APIRouter()
 
 CurrentUser = Annotated[User, Depends(get_current_user)]
+Session = Annotated[Session, Depends(get_session)]
 
 router = APIRouter(prefix='/todos', tags=['todos'])
 
@@ -20,7 +21,7 @@ router = APIRouter(prefix='/todos', tags=['todos'])
 def create_todo(
     todo: TodoSchema,
     user: CurrentUser,
-    session: Session = Depends(get_session),
+    session: Session,
 ):
     db_todo: Todo = Todo(
         title=todo.title,

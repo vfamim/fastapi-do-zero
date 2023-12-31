@@ -64,7 +64,7 @@ def test_refresh_token(client, token):
     assert response.status_code == 200
     assert 'access_token' in data
     assert 'token_type' in data
-    assert data['token_type'] == 'bearer'
+    assert response.json()['token_type'] == 'bearer'
 
 
 def test_token_expired_dont_refresh(client, user):
