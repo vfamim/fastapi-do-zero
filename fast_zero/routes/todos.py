@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from fast_zero.database import get_session
 from fast_zero.models import Todo, User
-from fast_zero.schemas import TodoPublic, TodoSchema, TodoList
+from fast_zero.schemas import TodoList, TodoPublic, TodoSchema
 from fast_zero.security import get_current_user
 
 router = APIRouter()

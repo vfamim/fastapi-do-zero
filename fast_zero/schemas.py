@@ -1,5 +1,6 @@
+from pydantic import BaseModel, ConfigDict, EmailStr
+
 from fast_zero.models import TodoState
-from pydantic import BaseModel, EmailStr, ConfigDict
 
 
 class UserSchema(BaseModel):

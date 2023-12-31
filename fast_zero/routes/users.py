@@ -1,20 +1,18 @@
+from typing import Annotated
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from fast_zero.models import User
+
 from fast_zero.database import get_session
-from fast_zero.schemas import (
-    # Message,
-    UserSchema,
-    UserPublic,
-    UserList,
+from fast_zero.models import User
+from fast_zero.schemas import (  # Message,
     Message,
+    UserList,
+    UserPublic,
+    UserSchema,
 )
-from fast_zero.security import (
-    get_current_user,
-    get_password_hash,
-)
-from typing import Annotated
+from fast_zero.security import get_current_user, get_password_hash
 
 Session = Annotated[Session, Depends(get_session)]
 CurrentUser = Annotated[User, Depends(get_current_user)]
